@@ -18,5 +18,5 @@ Retrieval-Augmented Generation (RAG).
 - Ngrok (Colab)
 
 ## Notebooks
-- `notebook1_data_processing.ipynb`: Dataset loading, chunking, embeddings, FAISS index
-- `notebook2_rag_flask_app.ipynb`: RAG pipeline + Flask UI
+- `contract_risk_model.ipynb`: Dataset loading, chunking, embeddings, FAISS index
+- `rag_flask_app.ipynb`: RAG pipeline + Flask UI
