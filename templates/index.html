@@ -1,0 +1,103 @@
+html = """<!DOCTYPE html>
+<html>
+<head>
+    <title>Intelligent Contract Review Assistant</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #fafafa;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 12px;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 14px;
+            background-color: #1976d2;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #125aa3;
+        }
+
+        .answer-box {
+            background-color: #fff8e1;
+            border-left: 6px solid #ff9800;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .chunks-box {
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 6px solid #9e9e9e;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        hr {
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>📄 Intelligent Contract Review Assistant (RAG)</h1>
+<p>
+    Ask questions like:
+    <i>"termination conditions", "payment terms", "vendor risk"</i>
+</p>
+
+<form method="POST" action="/ask">
+    <input
+        type="text"
+        name="query"
+        placeholder="Ask a question about the contract..."
+        value="{{ query or '' }}"
+        required
+    >
+    <button type="submit">Ask</button>
+</form>
+
+{% if answer %}
+<div class="answer-box">
+    <h3>✅ Answer</h3>
+    <pre>{{ answer }}</pre>
+</div>
+{% endif %}
+
+{% if chunks %}
+<div class="chunks-box">
+    <h3>📌 Retrieved Contract Evidence</h3>
+    {% for c in chunks %}
+        <hr>
+        <pre>{{ c }}</pre>
+    {% endfor %}
+</div>
+{% endif %}
+
+</body>
+</html>
+"""
+
+with open("templates/index.html", "w") as f:
+    f.write(html)
